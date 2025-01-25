@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip CryptoGuy - Support Me</title>
+    <style>
+        /* Styling for page */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .crypto-address {
+            font-weight: bold;
+            background: #eaeaea;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .goal {
+            margin: 20px auto;
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Game Styling */
+        .game-container {
+            margin-top: 30px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        .coin-balance {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .spin-button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .note {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Tip CryptoGuy</h1>
+    <p>Your tips help me achieve my goals!</p>
+
+    <!-- Crypto Addresses -->
+    <h3>Tip me with Bitcoin (BTC):</h3>
+    <p class="crypto-address">bc1qx2rd440mz3dpc0mk4e3v766gt70glh32mfdq48</p>
+
+    <!-- Donation Goal Section -->
+    <div class="goal">
+        Current Donations: $0 / $10,000
+    </div>
+
+    <!-- Game Section -->
+    <div class="game-container">
+        <h2>Game: Crypto Spin</h2>
+        <p class="coin-balance">Your Balance: <span id="coinBalance">0</span> Coins</p>
+        <p>You need <strong>1000 coins</strong> to spin! Donate $10 to receive 1000 coins.</p>
+        
+        <!-- Verification Note -->
+        <p class="note">You need to verify that you donated $10 or more in order to receive coins. Please contact me on Discord at <strong>idk_baj</strong> to verify your donation.</p>
+        
+        <button id="spinButton" class="spin-button" disabled>Spin</button>
+        <footer>
+            <p>Thank you for your support!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Example: Simulated user donation to gain coins
+        let userCoins = 0; // Start with no coins
+
+        // Simulate donation and coin update (e.g., 1000 coins for $10 donation)
+        function updateCoins(donationAmount) {
+            if (donationAmount >= 10) { // For every $10 donated, award 1000 coins
+                userCoins += 1000;
+                document.getElementById('coinBalance').innerText = userCoins;
+
+                // Enable the spin button if the user has enough coins
+                if (userCoins >= 1000) {
+                    document.getElementById('spinButton').disabled = false;
+                }
+            }
+        }
+
+        // Game logic for spinning (random outcome)
+        document.getElementById('spinButton').addEventListener('click', function() {
+            if (userCoins >= 1000) {
+                userCoins -= 1000;  // Deduct 1000 coins for spinning
+                document.getElementById('coinBalance').innerText = userCoins;
+
+                // Random outcome (e.g., a simple win/lose for fun)
+                let outcome = Math.random() > 0.5 ? 'You won! 🎉' : 'Sorry, try again.';
+                alert(outcome);
+
+                // After spin, disable the button again if coins are less than 1000
+                if (userCoins < 1000) {
+                    document.getElementById('spinButton').disabled = true;
+                }
+            }
+        });
+
+        // Simulate donation process (e.g., $10 = 1000 coins)
+        updateCoins(10);  // Simulate a $10 donation which gives 1000 coins
+
+    </script>
+</body>
+</html>
